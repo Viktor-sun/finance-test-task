@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import socket from './helpers/socket';
+import { useSelector, useDispatch } from 'react-redux';
+import { tickersOperations } from './redux/tickers';
+import { tickersSelectors } from './redux/tickers';
 
 function App() {
-  useEffect(() => {
-    function sock() {
-      socket.emit('start');
-      socket.on('ticker', a => {
-        console.log(a, 'ticker');
-      });
-    }
-    sock();
-  }, []);
+  const despatch = useDispatch();
+  const tickers = useSelector(tickersSelectors.getTickers);
 
+  useEffect(() => {
+    despatch(tickersOperations.fetchTickers());
+  }, [despatch]);
+  console.log(tickers);
   return <div className="App"></div>;
 }
 
