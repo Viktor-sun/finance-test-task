@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import TickersList from './components/TickersList';
+import Container from './components/Container';
 import { tickersOperations } from './redux/tickers';
 
 function App() {
@@ -11,9 +12,11 @@ function App() {
   }, [despatch]);
 
   return (
-    <div className="App">
-      <TickersList />
-    </div>
+    <>
+      <Container>
+        <TickersList />
+      </Container>
+    </>
   );
 }
 
