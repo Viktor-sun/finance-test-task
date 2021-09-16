@@ -6,7 +6,7 @@ import s from './TickersItem.module.css';
 
 const BACKGROUND_COLORS_ON_TITLES = [
   '#FED057',
-  '#6E78E8',
+  '#7f88e8',
   '#FD9498',
   '#00AD84',
   '#C5BAFF',
