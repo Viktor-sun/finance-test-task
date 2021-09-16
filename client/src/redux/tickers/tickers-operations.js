@@ -1,5 +1,5 @@
 import tickersActions from './tickers-actions';
-import socket from '../../helpers/socket';
+import socket from '../../services/socket';
 
 const fetchTickers = () => async dispatch => {
   dispatch(tickersActions.tickersRequest());
