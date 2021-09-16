@@ -4,22 +4,15 @@
   justify-content: center;
   padding: 0;
   list-style: none;
+  animation: start 0.5s;
 }
 
-.item {
-  margin: 10px;
-  padding: 15px 10px;
-  border-radius: 20px;
-  min-width: calc((100% - 240px) / 6);
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-}
+@keyframes start {
+  from {
+    transform: scale(0);
+  }
 
-.title {
-  margin: 0 auto 20px;
-  max-width: 100px;
-
-  padding: 7px 12px;
-  text-align: center;
-  border-radius: 30%;
-  transition: background-color, 700ms;
+  to {
+    transform: scale(100%);
+  }
 }
