@@ -6,11 +6,11 @@ import FormOnChangeInterval from './components/FormOnChangeInterval';
 import { tickersOperations } from './redux/tickers';
 
 function App() {
-  const despatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    despatch(tickersOperations.fetchTickers());
-  }, [despatch]);
+    dispatch(tickersOperations.fetchTickers());
+  }, [dispatch]);
 
   return (
     <>
