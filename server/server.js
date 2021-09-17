@@ -4,7 +4,7 @@ const http = require("http");
 const io = require("socket.io");
 const cors = require("cors");
 
-const FETCH_INTERVAL = 5000;
+let fetchInterval = 5000;
 const PORT = process.env.PORT || 4000;
 
 const tickers = [
@@ -55,10 +55,16 @@ function trackTickers(socket) {
   // every N seconds
   const timer = setInterval(function () {
     getQuotes(socket);
-  }, FETCH_INTERVAL);
+  }, fetchInterval);
 
   socket.on("disconnect", function () {
     clearInterval(timer);
+  });
+
+  socket.on("changeInterval", function (interval) {
+    clearInterval(timer);
+    fetchInterval = interval;
+    trackTickers(socket);
   });
 }
 
