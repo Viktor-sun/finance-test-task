@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import socket from '../../services/socket';
+import notifications from '../../services/react-toastify';
 import s from './FormOnChangeInterval.module.css';
 
 export default function FormOnChangeInterval() {
@@ -9,6 +10,7 @@ export default function FormOnChangeInterval() {
   const handleSubmit = e => {
     e.preventDefault();
     socket.emit('changeInterval', currentInterval * 1000);
+    notifications.sucess('interval updated');
   };
 
   return (
