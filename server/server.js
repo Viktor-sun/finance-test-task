@@ -46,6 +46,7 @@ function getQuotes(socket) {
   }));
 
   socket.emit("ticker", quotes);
+  socket.emit("interval", fetchInterval);
 }
 
 function trackTickers(socket) {
