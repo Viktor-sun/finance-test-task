@@ -1,3 +1,12 @@
+## Was added:
+- visual effects to highlight positive or negative changes in the prices (was used styled-components)
+- the possibility to switch on/off tickers by user
+- the possibility to specify interval time by user
+
+You can find a live version at
+[viktor-sun.github.io/finance-test-task](https://viktor-sun.github.io/finance-test-task/)
+
+Server deployed on heroku [test-task12.herokuapp.com](https://test-task12.herokuapp.com/)
 
 # React Test Task
 
