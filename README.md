@@ -4,7 +4,7 @@
 - the possibility to specify interval time by user
 
 You can find a live version at
-[viktor-sun.github.io/finance-test-task](https://viktor-sun.github.io/finance-test-task/)
+[vs-test-task.netlify.app](https://vs-test-task.netlify.app/)
 
 Server deployed on heroku [test-task12.herokuapp.com](https://test-task12.herokuapp.com/)
 
