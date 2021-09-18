@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TickersList from './components/TickersList';
 import Container from './components/Container';
+import Spinner from './components/Spinner';
 import FormOnChangeInterval from './components/FormOnChangeInterval';
-import { tickersOperations } from './redux/tickers';
+import { tickersOperations, tickersSelectors } from './redux/tickers';
 
 function App() {
   const dispatch = useDispatch();
+  const isLiading = useSelector(tickersSelectors.isLoading);
 
   useEffect(() => {
     dispatch(tickersOperations.fetchTickers());
@@ -14,6 +16,7 @@ function App() {
 
   return (
     <>
+      <Spinner isHidden={isLiading} />
       <Container>
         <FormOnChangeInterval />
         <TickersList />

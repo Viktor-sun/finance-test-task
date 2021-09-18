@@ -14,7 +14,14 @@ const error = createReducer(null, {
   [tickersActions.tickersSuccess]: () => null,
 });
 
+const loading = createReducer(false, {
+  [tickersActions.tickersRequest]: () => true,
+  [tickersActions.tickersSuccess]: () => false,
+  [tickersActions.tickersError]: () => false,
+});
+
 export default combineReducers({
   fetchedTickers,
   error,
+  loading,
 });
