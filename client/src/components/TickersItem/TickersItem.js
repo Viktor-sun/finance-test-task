@@ -28,17 +28,23 @@ const StyledB = styled.b`
   display: inline-block;
 `;
 
+const StyledLi = styled.li`
+  transition: background-color 250ms ease-in-out;
+  background-color: ${({ tickerTitles, ticker }) =>
+    tickerTitles.includes(ticker) ? 'grey' : '#fff'};
+`;
+
 export default function TickersItem() {
   const tickers = useSelector(tickersSelectors.getTickers);
-  const [tickerTitles, setTickerTitle] = useState([]);
+  const [tickerTitles, setTickerTitles] = useState([]);
 
-  const handleOnClick = e => {
+  const handleOnButton = e => {
     const title = e.target.id;
     if (tickerTitles.includes(title)) {
-      const filteredTitles = tickerTitles.filter(e => e !== title);
-      setTickerTitle(filteredTitles);
+      const filteredTitles = tickerTitles.filter(ticker => ticker !== title);
+      setTickerTitles(filteredTitles);
     } else {
-      setTickerTitle([...tickerTitles, title]);
+      setTickerTitles([...tickerTitles, title]);
     }
   };
 
@@ -58,24 +64,31 @@ export default function TickersItem() {
               last_trade_time,
             },
             i,
-          ) => {
-            return tickerTitles.includes(ticker) ? (
-              <li
-                key={ticker}
-                className={s.item}
-                style={{ backgroundColor: 'grey' }}
+          ) => (
+            <StyledLi
+              tickerTitles={tickerTitles}
+              ticker={ticker}
+              key={ticker}
+              className={s.item}
+            >
+              <button
+                type="button"
+                className={s.button}
+                id={ticker}
+                onClick={handleOnButton}
               >
-                <button type="button" id={ticker} onClick={handleOnClick}>
-                  asd
-                </button>
-                <h2
-                  className={s.title}
-                  style={{
-                    backgroundColor: BACKGROUND_COLORS_ON_TITLES[i],
-                  }}
-                >
-                  {ticker}
-                </h2>
+                off/on
+              </button>
+              <h2
+                className={s.title}
+                style={{
+                  backgroundColor: BACKGROUND_COLORS_ON_TITLES[i],
+                }}
+              >
+                {ticker}
+              </h2>
+
+              {tickerTitles.includes(ticker) ? (
                 <ul className={s.listStatistics}>
                   <li className={s.itemStatistics}>{exchange}</li>
                   <li className={s.itemStatistics}>
@@ -95,20 +108,7 @@ export default function TickersItem() {
                   </li>
                   <li className={s.itemStatistics}>00.00.0000</li>
                 </ul>
-              </li>
-            ) : (
-              <li key={ticker} className={s.item}>
-                <button type="button" id={ticker} onClick={handleOnClick}>
-                  asd
-                </button>
-                <h2
-                  className={s.title}
-                  style={{
-                    backgroundColor: BACKGROUND_COLORS_ON_TITLES[i],
-                  }}
-                >
-                  {ticker}
-                </h2>
+              ) : (
                 <ul className={s.listStatistics}>
                   <li className={s.itemStatistics}>{exchange}</li>
                   <li className={s.itemStatistics}>
@@ -135,9 +135,9 @@ export default function TickersItem() {
                     {new Date(last_trade_time).toLocaleDateString()}
                   </li>
                 </ul>
-              </li>
-            );
-          },
+              )}
+            </StyledLi>
+          ),
         )}
     </>
   );
