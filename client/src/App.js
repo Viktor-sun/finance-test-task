@@ -15,6 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(tickersOperations.fetchTickers());
+    dispatch(tickersOperations.fetchInterval());
   }, [dispatch]);
 
   return (

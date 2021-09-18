@@ -20,5 +20,13 @@ const fetchTickers = () => async dispatch => {
   );
 };
 
+const fetchInterval = () => async dispatch => {
+  dispatch(tickersActions.intervalRequest());
+
+  socket.on('interval', interval =>
+    dispatch(tickersActions.intervalSuccess(interval)),
+  );
+};
+
 // eslint-disable-next-line
-export default { fetchTickers };
+export default { fetchTickers, fetchInterval };
