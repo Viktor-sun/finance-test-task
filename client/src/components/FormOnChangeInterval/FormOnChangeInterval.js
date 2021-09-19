@@ -31,7 +31,6 @@ export default function FormOnChangeInterval() {
         <input
           className={s.input}
           type="number"
-          placeholder="enter new interval"
           name="interval"
           onChange={handleChangeInterval}
           value={currentInterval}
