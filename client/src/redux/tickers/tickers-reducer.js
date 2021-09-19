@@ -12,6 +12,16 @@ const fetchedInterval = createReducer(1, {
   [tickersActions.intervalSuccess]: (_, { payload }) => payload,
 });
 
+const fetchedTickersOff = createReducer([], {
+  [tickersActions.tckersOff]: (state, { payload }) => {
+    if (state.includes(payload)) {
+      return state.filter(ticker => ticker !== payload);
+    } else {
+      return [...state, payload];
+    }
+  },
+});
+
 const error = createReducer(null, {
   [tickersActions.tickersError]: (_, { payload }) => payload,
   [tickersActions.intervalError]: (_, { payload }) => payload,
@@ -35,4 +45,5 @@ export default combineReducers({
   error,
   loading,
   fetchedInterval,
+  fetchedTickersOff,
 });

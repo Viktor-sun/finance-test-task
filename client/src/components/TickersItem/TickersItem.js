@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
-import { tickersSelectors } from '../../redux/tickers';
+import { tickersSelectors, tickersActions } from '../../redux/tickers';
 import s from './TickersItem.module.css';
 
 const BACKGROUND_COLORS_ON_TITLES = [
@@ -30,22 +30,17 @@ const StyledB = styled.b`
 
 const StyledLi = styled.li`
   transition: background-color 250ms ease-in-out;
-  background-color: ${({ tickerTitles, ticker }) =>
-    tickerTitles.includes(ticker) ? 'grey' : '#fff'};
+  background-color: ${({ tckersOff, ticker }) =>
+    tckersOff.includes(ticker) ? '#656464' : '#ffffff'};
 `;
 
 export default function TickersItem() {
+  const dispatch = useDispatch();
   const tickers = useSelector(tickersSelectors.getTickers);
-  const [tickerTitles, setTickerTitles] = useState([]);
+  const tckersOff = useSelector(tickersSelectors.getTickersOff);
 
   const handleOnButton = e => {
-    const title = e.target.id;
-    if (tickerTitles.includes(title)) {
-      const filteredTitles = tickerTitles.filter(ticker => ticker !== title);
-      setTickerTitles(filteredTitles);
-    } else {
-      setTickerTitles([...tickerTitles, title]);
-    }
+    dispatch(tickersActions.tckersOff(e.target.id));
   };
 
   return (
@@ -66,7 +61,7 @@ export default function TickersItem() {
             i,
           ) => (
             <StyledLi
-              tickerTitles={tickerTitles}
+              tckersOff={tckersOff}
               ticker={ticker}
               key={ticker}
               className={s.item}
@@ -88,7 +83,7 @@ export default function TickersItem() {
                 {ticker}
               </h2>
 
-              {tickerTitles.includes(ticker) ? (
+              {tckersOff.includes(ticker) ? (
                 <ul className={s.listStatistics}>
                   <li className={s.itemStatistics}>{exchange}</li>
                   <li className={s.itemStatistics}>

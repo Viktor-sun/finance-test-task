@@ -8,6 +8,8 @@ const intervalRequest = createAction('tickers/fetchIntervalRequest');
 const intervalSuccess = createAction('tickers/fetchIntervalSuccess');
 const intervalError = createAction('tickers/fetchIntervalError');
 
+const tckersOff = createAction('tickers/offTickers');
+
 // eslint-disable-next-line
 export default {
   tickersRequest,
@@ -16,4 +18,5 @@ export default {
   intervalRequest,
   intervalSuccess,
   intervalError,
+  tckersOff,
 };
